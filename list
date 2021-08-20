@@ -1,0 +1,8 @@
+#  aliases : some for embedded situations, some for build box
+alias ll='ls -lna'
+alias rmtro='mount -o ro,remount / && (mount | grep root)'
+alias rmtrw='mount -o rw,remount / && (mount | grep root)'
+alias whoson='SN="$( ifconfig | grep -e 'Bcast' |  awk '{print $2}' | sed s'/addr://' | cut -d"." -f1-3 )"  ; for i in `seq 1 254`; do NAME="$( nslookup $SN.$i | grep -e 'name' | sed s'/^.*name = //' )" ; if [ ! -z "$NAME" ] ;then ( ping  -w1 $SN.$i 2>&1 > /dev/null ; [ $? -eq 0 ] && echo $SN.$i = $NAME)  ; fi ; done
+alias vncup="x0vncserver -display :0 -passwordfile ~/.vnc/passwd  > /dev/null 2>&1 &"
+alias scprtfs="scp ~/Buildroot/buildroot-2021.05/output/images/rootfs.tar root@rescue.local:/"
+alias customrsbkp="cp -r $HOME/Buildroot/buildroot-2021.05/custom-rs $HOME/owncloud/Computer-Technical/Linux/Kirkwood/RescueSystem2021/backup-of-custom-rs/custom-rs-`(date +'%F-%T' | sed  's/[:]//g')`"
